@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "finance": {
+      "title": "Finance",
+      "description": "Registro de entrada ou saída financeira",
+      "type": "object",
+      "properties": {
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "type": { "type": "string", "enum": ["entrada", "saída"] },
+        "date": { "type": "string", "format": "date-time" }
+      },
+      "required": ["amount", "type", "date"]
+    },
+    "goal": {
+      "title": "Goal",
+      "description": "Meta financeira",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "target_amount": { "type": "number" },
+        "current_amount": { "type": "number" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "target_amount", "current_amount"]
+    },
+    "reminder": {
+      "title": "Reminder",
+      "description": "Lembrete de tarefa ou evento",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "due_date": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "completed"] },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "due_date", "status"]
+    },
+    "note": {
+      "title": "Note",
+      "description": "Nota pessoal ou ideia",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["content"]
+    }
+  },
+  "firestore": {
+    "finances": {
+      "schema": { "$ref": "#/entities/finance" },
+      "description": "Coleção de transações financeiras"
+    },
+    "goals": {
+      "schema": { "$ref": "#/entities/goal" },
+      "description": "Coleção de metas financeiras"
+    },
+    "reminders": {
+      "schema": { "$ref": "#/entities/reminder" },
+      "description": "Coleção de lembretes"
+    },
+    "notes": {
+      "schema": { "$ref": "#/entities/note" },
+      "description": "Coleção de notas"
+    }
+  }
+}
